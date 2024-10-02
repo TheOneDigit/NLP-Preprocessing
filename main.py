@@ -38,8 +38,10 @@ ACTION_WORDS = [
 PHONE_PATTERNS = [
     r"\+?\d[\d\s\-().]{8,14}\d",  # International formats
     r"\b(\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4})\b",  # US/Canada local formats
-    r"\b(?:zero|one|two|three|four|five|six|seven|eight|nine)\s(?:zero|one|two|three|four|five|six|seven|eight|nine)\s(?:zero|one|two|three|four|five|six|seven|eight|nine)\s(?:zero|one|two|three|four|five|six|seven|eight|nine)\b",  # Word format
-    r"\b(?:zero|one|two|three|four|five|six|seven|eight|nine|double|sifar|aik|do|teen|chaar|paanch|chay|saat|aath|no)\s+([zero|one|two|three|four|five|six|seven|eight|nine|double|sifar|aik|do|teen|chaar|paanch|chay|saat|aath|no]\s*){6,9}\b",  # Urdu format
+    r"\b(?:zero|one|two|three|four|five|six|seven|eight|nine|double)\s+(?:zero|one|two|three|four|five|six|seven|eight|nine|double)\s+(?:zero|one|two|three|four|five|six|seven|eight|nine)\b",  # English numeral word format
+    r"\b(?:zero|one|two|three|four|five|six|seven|eight|nine|double|sifar|aik|do|teen|chaar|paanch|chay|saat|aath|no)\s+(?:zero|one|two|three|four|five|six|seven|eight|nine|double|sifar|aik|do|teen|chaar|paanch|chay|saat|aath|no)\s+(?:zero|one|two|three|four|five|six|seven|eight|nine|double|sifar|aik|do|teen|chaar|paanch|chay|saat|aath|no)\b",  # Urdu numeral word format
+    r"\b(?:٠|١|٢|٣|٤|٥|٦|٧|٨|٩)\s+(?:٠|١|٢|٣|٤|٥|٦|٧|٨|٩)\s+(?:٠|١|٢|٣|٤|٥|٦|٧|٨|٩)\b",  # Arabic numeral format
+    r"\b(?:صفر|ایک|دو|تین|چار|پانچ|چھ|سات|آٹھ|نو)\s+(?:صفر|ایک|دو|تین|چار|پانچ|چھ|سات|آٹھ|نو)\s+(?:صفر|ایک|دو|تین|چار|پانچ|چھ|سات|آٹھ|نو)\b"  # Urdu numeral word format (Arabic script)
 ]
 
 # Email patterns
@@ -105,3 +107,6 @@ def filter_text(request: TextRequest):
         logger.error(f"Unexpected error in filter_text: {e}")
         raise HTTPException(status_code=500, detail="Internal Server Error")
 
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
