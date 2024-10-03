@@ -24,13 +24,20 @@ class TextRequest(BaseModel):
     text: str
 
 # Action words to look for in messages
+# Action words to look for in messages
 ACTION_WORDS = [
     "contact", "reach", "call", "message", "text", "email", "phone", "number", "WhatsApp", "details", 
     "connect", "info", "DM", "chat", "hit", "touch", "send", "share", "exchange", "outside", 
     "continue", "discuss", "offline", "number bejo", "contact bejo", "number chayey", "contact chayey", 
     "whatsapp bejo", "whatsapp cahyey", "whatsapp dedo", "send contact", "share contact", 
-    "send number", "send phone", "share number", "share whatsapp", "send whatsapp"
+    "send number", "send phone", "share number", "share whatsapp", "send whatsapp",
+    "number dy do", "number share kro", "calling number do",  
+    "Send contact", "Send your contact", "Send ur contact", "Send your number", "Send number", 
+    "Send ur number", "Share ur number", "Share your number", "Share contact",  
+    "Send whatsapp", "Send your whatsapp", "Send ur whatsapp", "Share ur whatsapp", "Share your whatsapp",  
+    "Send email", "Send your email", "Send ur email", "Share email", "Share your email" 
 ]
+
 
 # Phone number patterns
 PHONE_PATTERNS = [
