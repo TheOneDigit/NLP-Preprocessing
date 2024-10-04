@@ -79,7 +79,7 @@ def detect_and_replace(text: str) -> tuple:
         raise HTTPException(status_code=500, detail="Error detecting and replacing sensitive information")
 
 # Function to remove long words and flag them
-def remove_long_words(text: str, limit: int = 13) -> tuple:
+def remove_long_words(text: str, limit: int = 16) -> tuple:
     try:
         words = text.split()
         filtered_words = []
