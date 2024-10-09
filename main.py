@@ -40,14 +40,45 @@ ACTION_WORDS = [
 
 
 # Phone number patterns
+# Phone number patterns
 PHONE_PATTERNS = [
     r"\+?\d[\d\s\-().]{8,14}\d",  # International formats
     r"\b(\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4})\b",  # US/Canada local formats
-    r"\b(?:zero|one|two|three|four|five|six|seven|eight|nine|double)\s+(?:zero|one|two|three|four|five|six|seven|eight|nine)\b",  # English numeral word format
-    r"\b(?:zero|one|two|three|four|five|six|seven|eight|nine|double|sifar|aik|do|teen|chaar|paanch|chay|saat|aath|no)\s+(?:zero|one|two|three|four|five|six|seven|eight|nine|double|sifar|aik|do|teen|chaar|paanch|chay|saat|aath|no)\b",  # Urdu numeral word format
-    r"\b(?:٠|١|٢|٣|٤|٥|٦|٧|٨|٩)\s+(?:٠|١|٢|٣|٤|٥|٦|٧|٨|٩)\s+(?:٠|١|٢|٣|٤|٥|٦|٧|٨|٩)\b",  # Arabic numeral format
-    r"\b(?:صفر|ایک|دو|تین|چار|پانچ|چھ|سات|آٹھ|نو)\s+(?:صفر|ایک|دو|تین|چار|پانچ|چھ|سات|آٹھ|نو)\s+(?:صفر|ایک|دو|تین|چار|پانچ|چھ|سات|آٹھ|نو)\b",  # Urdu numeral word format (Arabic script)
+
+    # Case 1: Numbers separated by commas
+    r"\b(?:\d{1,4},)+\d{1,4}\b",  # e.g., 030256,27875
+    
+    # Case 2: Numbers shared with country mentioned without country code, max 4 digits allowed
+    r"\b(?:\d{1,4}(?:\s+[a-zA-Z]+)?(?:\s+\d{1,4})?)\b",  # e.g., 355098765 this is Pakistani number
+
+    # Case 3: Numbers with replaced characters (0 -> O, 1 -> I, etc.)
+    r"\b(?:[O0EIIS59]+\s*){8,14}\b",  # e.g., O3O2SO9I8OE
+
+    # Case 4: Roman numeral format with replaced characters
+    r"\b(?:[0OIVX1]{1,4}\s+){8,14}\b",  # e.g., 0 III 0 II V 0 V VII V IV VIII VI
+
+    # Case 5: Numbers written in separate messages
+    r"\b(?:zero|one|two|three|four|five|six|seven|eight|nine|double|triple)\b",  # e.g., split in messages like zero, double3, etc.
+
+    # Case 6: Mixed number with word counting
+    r"\b(?:\d(?:zero|one|two|three|four|five|six|seven|eight|nine|double|triple))+\b",  # e.g., 0zero 5five double4...
+
+    # Case 7: Numbers written in words separated by commas
+    r"\b(?:zero|one|two|three|four|five|six|seven|eight|nine|double|triple)\s*,\s*(?:zero|one|two|three|four|five|six|seven|eight|nine|double|triple)\b",  # e.g., zero , three , zero , two...
+    
+    # English numeral word format
+    r"\b(?:zero|one|two|three|four|five|six|seven|eight|nine|double)\s+(?:zero|one|two|three|four|five|six|seven|eight|nine)\b",
+
+    # Urdu numeral word format (Roman script)
+    r"\b(?:zero|one|two|three|four|five|six|seven|eight|nine|double|sifar|aik|do|teen|chaar|paanch|chay|saat|aath|no)\s+(?:zero|one|two|three|four|five|six|seven|eight|nine|double|sifar|aik|do|teen|chaar|paanch|chay|saat|aath|no)\b",
+    
+    # Arabic numeral format
+    r"\b(?:٠|١|٢|٣|٤|٥|٦|٧|٨|٩)\s+(?:٠|١|٢|٣|٤|٥|٦|٧|٨|٩)\s+(?:٠|١|٢|٣|٤|٥|٦|٧|٨|٩)\b",
+    
+    # Urdu numeral word format (Arabic script)
+    r"\b(?:صفر|ایک|دو|تین|چار|پانچ|چھ|سات|آٹھ|نو)\s+(?:صفر|ایک|دو|تین|چار|پانچ|چھ|سات|آٹھ|نو)\s+(?:صفر|ایک|دو|تین|چار|پانچ|چھ|سات|آٹھ|نو)\b"
 ]
+
 
 # Email patterns
 EMAIL_PATTERNS = [
