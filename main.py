@@ -48,8 +48,8 @@ PHONE_PATTERNS = [
     # Case 1: Numbers separated by commas
     r"\b(?:\d{1,4},)+\d{1,4}\b",  # e.g., 030256,27875
     
-    # Case 2: Numbers shared with country mentioned without country code, max 4 digits allowed
-    r"\b(?:\d{1,4}(?:\s+[a-zA-Z]+)?(?:\s+\d{1,3})?)\b",  # e.g., 355098765 this is Pakistani number
+    # Case 2: Numbers shared with country mentioned without country code, max 5 digits allowed
+    r"\b(?:\d{1,5}(?:\s+[a-zA-Z]+)?(?:\s+\d{1,3})?)\b",  # e.g., 355098765 this is Pakistani number
 
     # Case 3: Numbers with replaced characters (0 -> O, 1 -> I, etc.)
     r"\b(?:[O0EIIS59]+\s*){8,14}\b",  # e.g., O3O2SO9I8OE
