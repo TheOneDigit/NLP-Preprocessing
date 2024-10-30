@@ -23,7 +23,7 @@ def home():
 class TextRequest(BaseModel):
     text: str
 
-# Action words to look for in messages
+
 # Action words to look for in messages
 ACTION_WORDS = [
     "contact", "reach", "call", "message", "text", "email", "phone", "number", "WhatsApp", "details", 
@@ -38,8 +38,7 @@ ACTION_WORDS = [
     "Send email", "Send your email", "Send ur email", "Share email", "Share your email" 
 ]
 
-
-# Phone number patterns
+
 # Phone number patterns
 PHONE_PATTERNS = [
     r"\+?\d[\d\s\-().]{8,14}\d",  # International formats
@@ -79,7 +78,6 @@ PHONE_PATTERNS = [
     r"\b(?:صفر|ایک|دو|تین|چار|پانچ|چھ|سات|آٹھ|نو)\s+(?:صفر|ایک|دو|تین|چار|پانچ|چھ|سات|آٹھ|نو)\s+(?:صفر|ایک|دو|تین|چار|پانچ|چھ|سات|آٹھ|نو)\b"
 ]
 
-    r"\b\d{4}\b" # Detect 4 Numbers range only
 
 
 # Email patterns
